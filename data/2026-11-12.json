@@ -1,0 +1,62 @@
+{
+ "mood": "正直",
+ "utc": "2026-11-12 04:07",
+ "errors": [
+  "wind: 404 Client Error: Not Found for url: https://services.swpc.noaa.gov/products/solar-wind/plasma-1-day.json"
+ ],
+ "quakes": {
+  "grave": [],
+  "count": 203,
+  "m5_count": 8,
+  "max_mag": 5.4,
+  "top": [
+   {
+    "mag": 5.4,
+    "place": "South Sandwich Islands region",
+    "time": 1794455156644,
+    "alert": null,
+    "depth": 121.557,
+    "mmi": 3.22,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.1,
+    "place": "80 km W of Panguna, Papua New Guinea",
+    "time": 1794418702582,
+    "alert": null,
+    "depth": 58.822,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.1,
+    "place": "South Sandwich Islands region",
+    "time": 1794411565949,
+    "alert": null,
+    "depth": 104.66,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ],
+  "near_japan": []
+ },
+ "flares": {
+  "count": 13,
+  "max_class": "M1.7"
+ },
+ "kp": {
+  "kp_max": 2.67
+ },
+ "wind": null,
+ "moon": {
+  "age": 2.3,
+  "ja": "三日月",
+  "en": "waxing crescent"
+ }
+}
