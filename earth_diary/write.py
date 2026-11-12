@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import os
 import random
+import re
 from pathlib import Path
 
 from .mood import MOOD_EN
@@ -74,9 +75,21 @@ def write_diary(data: dict, mood: str) -> dict:
         messages=[{"role": "user", "content": f"昨日のデータ:\n{facts}"}],
     )
     text = "".join(b.text for b in msg.content if b.type == "text").strip()
-    text = text.removeprefix("```json").removeprefix("```").removesuffix("```").strip()
-    out = json.loads(text)
-    return {"ja": out["ja"].strip(), "en": out["en"].strip()}
+    return parse_diary(text)
+
+
+def parse_diary(text: str) -> dict:
+    """<ja>…</ja><en>…</en> を取り出す。昔のJSON形式で返ってきても読む。"""
+    ja = re.search(r"<ja>(.*?)</ja>", text, re.S)
+    en = re.search(r"<en>(.*?)</en>", text, re.S)
+    if ja and en:
+        return {"ja": ja.group(1).strip(), "en": en.group(1).strip()}
+    try:
+        body = text.removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+        out = json.loads(body, strict=False)  # 文字列の中の生の改行も許す
+        return {"ja": out["ja"].strip(), "en": out["en"].strip()}
+    except Exception:
+        raise ValueError(f"日記の形式が読めんかった:\n{text}")
 
 
 def verdict_lines(data: dict, mood: str) -> str:

@@ -101,6 +101,13 @@ def test_grave_day():
     assert g(mmi=6.4) and g(felt=2500) and not g(felt=40) and not g()
 
 
+def test_parse_diary():
+    tagged = "<ja>\nもうええて。\n寝る。\n</ja>\n<en>\nEnough.\nGoing to bed.\n</en>"
+    assert write.parse_diary(tagged) == {"ja": "もうええて。\n寝る。", "en": "Enough.\nGoing to bed."}
+    raw_json = '{"ja": "一行目\n二行目", "en": "line one\nline two"}'  # 生の改行入り（今回落ちた形）
+    assert write.parse_diary(raw_json)["ja"] == "一行目\n二行目"
+
+
 def test_slots():
     s = video.slots(NOW)
     assert len(s) == 71 and s[0] == "2150" and s[-1] == "2110"
