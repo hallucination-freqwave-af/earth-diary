@@ -19,6 +19,7 @@ from .video import CREDIT_EARTH, CREDIT_SUN, make_video
 from .write import compose, is_grave, verdict_lines, write_diary
 
 ROOT = Path(__file__).resolve().parent.parent
+TAG = "#EarthDiary"  # 目次としてのタグ。押すと過去の日記が並ぶ
 OUTBOX = ROOT / "outbox"
 JST = dt.timezone(dt.timedelta(hours=9))
 
@@ -65,8 +66,8 @@ def write(now: dt.datetime | None = None, data: dict | None = None, **video_kwar
     save_history(history)
 
     # 投稿の段階に渡す中身
-    parts = [f"地球日記 {label}\n\n{diary['ja']}", diary["en"], verdict_lines(data, shown)]
-    payload = {"date": stamp, "text": text, "parts": parts, "video": "video.mp4" if video else None,
+    parts = [f"地球日記 {label}\n\n{diary['ja']}", diary["en"], verdict_lines(data, shown) + f"\n\n{TAG}"]
+    payload = {"date": stamp, "text": f"{text}\n\n{TAG}", "parts": parts, "video": "video.mp4" if video else None,
                "grave": grave}
     (OUTBOX / "post.json").write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
 
