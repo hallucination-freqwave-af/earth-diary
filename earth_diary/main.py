@@ -1,0 +1,94 @@
+"""一日一回、二段階で動く。
+
+  python -m earth_diary.main write   # 夜7時：データ → 気分 → 日記 → 映像 → 保存（投稿はしない）
+  python -m earth_diary.main post    # 又七が承認したら：保存した日記をXに投稿
+
+書く段階は、投稿する中身を outbox/post.json に置く。投稿の段階はそれを読むだけ。
+"""
+from __future__ import annotations
+
+import datetime as dt
+import json
+import os
+import sys
+from pathlib import Path
+
+from .fetch import collect
+from .mood import decide, raw_mood
+from .video import CREDIT_EARTH, CREDIT_SUN, make_video
+from .write import compose, is_grave, verdict_lines, write_diary
+
+ROOT = Path(__file__).resolve().parent.parent
+OUTBOX = ROOT / "outbox"
+JST = dt.timezone(dt.timedelta(hours=9))
+
+
+def load_history() -> list[dict]:
+    p = ROOT / "data" / "history.json"
+    return json.loads(p.read_text(encoding="utf-8")) if p.exists() else []
+
+
+def save_history(history: list[dict]) -> None:
+    (ROOT / "data" / "history.json").write_text(
+        json.dumps(history[-400:], ensure_ascii=False, indent=1), encoding="utf-8")
+
+
+def write(now: dt.datetime | None = None, data: dict | None = None, **video_kwargs) -> dict:
+    """夜7時に、今日一日（直近24時間）の日記を書く。"""
+    now = now or dt.datetime.now(dt.timezone.utc)
+    today = now.astimezone(JST).date()
+    label = f"{today.month}月{today.day}日"
+    stamp = today.isoformat()
+
+    data = data or collect(now)
+    history = [h for h in load_history() if h.get("date") != stamp]
+    mood = decide(data, history)
+    diary = write_diary(data, mood)
+    # 人に被害が出たかもしれない日は、気分の判定を出さず、太陽も割り込ませない
+    grave = is_grave(data)
+    shown = "静かに（被害の恐れのある地震）" if grave else mood
+    text = compose(label, diary, data, shown)
+
+    OUTBOX.mkdir(exist_ok=True)
+    video_mood = "達観" if grave else mood
+    video = make_video(video_mood, OUTBOX / "video.mp4", now=now, **video_kwargs)
+    credits = CREDIT_EARTH + (" / " + CREDIT_SUN if video and video_mood in ("正直", "うるさい") else "")
+    if video:
+        text += f"\n映像：{credits}"
+
+    # 保存（リポジトリが日記の保管庫）
+    (ROOT / "diary" / f"{stamp}.md").write_text(text + "\n", encoding="utf-8")
+    (ROOT / "data" / f"{stamp}.json").write_text(
+        json.dumps({"mood": mood, **data}, ensure_ascii=False, indent=1), encoding="utf-8")
+    history.append({"date": stamp, "mood": mood, "raw": raw_mood(data)})
+    save_history(history)
+
+    # 投稿の段階に渡す中身
+    parts = [f"地球日記 {label}\n\n{diary['ja']}", diary["en"], verdict_lines(data, shown)]
+    payload = {"date": stamp, "text": text, "parts": parts, "video": "video.mp4" if video else None,
+               "grave": grave}
+    (OUTBOX / "post.json").write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
+
+    # 承認画面で読めるように、Actionsのまとめ欄にも書く
+    summary = os.environ.get("GITHUB_STEP_SUMMARY")
+    if summary:
+        head = "⚠️ 被害の恐れのある地震がある日です。言葉を確かめてから承認してください。\n\n" if grave else ""
+        with open(summary, "a", encoding="utf-8") as fh:
+            fh.write(f"{head}```\n{text}\n```\n\n動画：{'あり（Artifactsの earth-diary から見られます）' if video else 'なし（文字だけで投稿）'}\n")
+    print(text)
+    return payload
+
+
+def post_outbox() -> list[str]:
+    from .post import post
+
+    payload = json.loads((OUTBOX / "post.json").read_text(encoding="utf-8"))
+    video = OUTBOX / payload["video"] if payload.get("video") else None
+    ids = post(payload["text"], payload["parts"], video)
+    print(f"[post] {ids}")
+    return ids
+
+
+if __name__ == "__main__":
+    stage = sys.argv[1] if len(sys.argv) > 1 else "write"
+    post_outbox() if stage == "post" else write()

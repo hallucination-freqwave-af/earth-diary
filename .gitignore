@@ -1,0 +1,4 @@
+diary/*.mp4
+outbox/
+__pycache__/
+*.pyc
