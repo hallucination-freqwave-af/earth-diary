@@ -37,7 +37,8 @@ def write(now: dt.datetime | None = None, data: dict | None = None, **video_kwar
     """夜7時に、今日一日（直近24時間）の日記を書く。"""
     now = now or dt.datetime.now(dt.timezone.utc)
     today = now.astimezone(JST).date()
-    label = f"{today.month}月{today.day}日"
+    weekday = "月火水木金土日"[today.weekday()]
+    label = f"{today.year}年{today.month}月{today.day}日（{weekday}）"
     stamp = today.isoformat()
 
     data = data or collect(now)
