@@ -55,7 +55,7 @@ GitHub Actions が毎晩19時ごろ（日本時間）に回します。
 3. 日記を書く（Claude）。関西弁 → 英語 → 判定 の順
 4. ひまわりが撮った地球の一日を短い動画にする。荒れた日は太陽（NASA SDO）が途中から割り込んでくる
 5. `diary/` と `data/` に残す
-6. **作者の承認を待つ**。承認ボタンを押したらXに投稿。押さなければ投稿されない（日記はリポジトリに残る）
+6. **作者の承認を待つ**。本文入りのIssueを立てるので、届いたメールで日記を読み、**ok** と返信したらXに投稿。返信しなければ投稿されない（日記はリポジトリに残る）。返事はリポジトリの持ち主のものだけを数える
 
 ### 人に被害が出たかもしれない日
 
@@ -76,7 +76,7 @@ GitHub Actions が毎晩19時ごろ（日本時間）に回します。
 
 1. Settings → Secrets and variables → Actions に `ANTHROPIC_API_KEY`（Claude の APIキー）を入れる
 2. Settings → Environments → New environment で `x-post` を作る
-   - Required reviewers にチェックして、自分を入れる
+   - Required reviewers は付けない（承認はメールへの ok の返信でする）
    - その環境の Environment secrets に、Xの4つを入れる（承認されるまで投稿の段階からも見えない）
 
 | 名前 | 中身 |

@@ -1,4 +1,5 @@
 name: 地球日記
+run-name: 地球日記 ${{ github.event_name == 'workflow_dispatch' && '（手で回した分）' || '' }}
 
 on:
   schedule:
@@ -7,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   write:
@@ -35,26 +37,15 @@ jobs:
           name: earth-diary
           path: outbox/
           retention-days: 7
-
-  post:
-    name: 承認されたらXに投稿
-    needs: write
-    runs-on: ubuntu-latest
-    environment: x-post        # ここで又七の承認を待つ
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - run: pip install -r requirements.txt
-      - uses: actions/download-artifact@v4
-        with:
-          name: earth-diary
-          path: outbox/
-      - name: 投稿
+      - name: 承認のメールを出す（本文入りのIssue。okと返信したら投稿）
         env:
-          X_API_KEY: ${{ secrets.X_API_KEY }}
-          X_API_SECRET: ${{ secrets.X_API_SECRET }}
-          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
-          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
-        run: python -m earth_diary.main post
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create earth-diary --color 0e8a16 --description "地球日記の承認待ち" --force
+          # 前の晩の承認待ちが残っていたら閉じる（もう投稿しない）
+          for n in $(gh issue list --label earth-diary --state open --json number --jq '.[].number'); do
+            gh issue close "$n" --comment "新しい日記が来たので、この日は投稿せずに閉じます。"
+          done
+          echo "" >> outbox/issue.md
+          echo "<!-- run:${{ github.run_id }} -->" >> outbox/issue.md
+          gh issue create --title "$(cat outbox/issue_title.txt)" --body-file outbox/issue.md --label earth-diary
