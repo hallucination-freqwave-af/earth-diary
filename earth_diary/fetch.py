@@ -50,7 +50,11 @@ def is_grave_quake(e: dict) -> bool:
     depth = e.get("depth")
     if e["mag"] >= 6.0 and depth is not None and depth <= 70:
         return True
-    if (e.get("mmi") or 0) >= 6 or (e.get("cdi") or 0) >= 6:   # 震度でいうとおおむね5強以上
+    # mmi は震源の真上（海の上のことも多い）のいちばん強い揺れの推定。
+    # 被害推定（PAGER）がもう付いていればそっちを信じ、mmi は推定がまだない時だけ使う。
+    if e.get("alert") is None and (e.get("mmi") or 0) >= 6:     # 震度でいうとおおむね5強以上
+        return True
+    if (e.get("cdi") or 0) >= 6:                                # 人が感じた揺れの報告
         return True
     if (e.get("felt") or 0) >= 1000:                            # 揺れを感じた報告が多い
         return True
