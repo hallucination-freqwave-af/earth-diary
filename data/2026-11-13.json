@@ -1,0 +1,96 @@
+{
+ "mood": "達観",
+ "utc": "2026-11-12 18:09",
+ "errors": [],
+ "quakes": {
+  "grave": [],
+  "count": 235,
+  "m5_count": 2,
+  "max_mag": 5.4,
+  "top": [
+   {
+    "mag": 5.4,
+    "place": "South Sandwich Islands region",
+    "time": 1794455156644,
+    "alert": "green",
+    "depth": 121.557,
+    "mmi": 3.22,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5,
+    "place": "48 km NW of Ancud, Chile",
+    "time": 1794424877374,
+    "alert": null,
+    "depth": 34.893,
+    "mmi": null,
+    "cdi": 3.4,
+    "felt": 4,
+    "tsunami": 0
+   },
+   {
+    "mag": 4.9,
+    "place": "116 km E of Georgetown, Saint Helena",
+    "time": 1794434622425,
+    "alert": null,
+    "depth": 10,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ],
+  "near_japan": [
+   {
+    "mag": 4.8,
+    "place": "155 km E of Noda, Japan",
+    "time": 1794456452379,
+    "alert": null,
+    "depth": 33.039,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 4.5,
+    "place": "3 km E of Tako, Japan",
+    "time": 1794490042321,
+    "alert": null,
+    "depth": 73.353,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 4.3,
+    "place": "Bonin Islands, Japan region",
+    "time": 1794490675661,
+    "alert": null,
+    "depth": 483.86,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ]
+ },
+ "flares": {
+  "count": 22,
+  "max_class": "M1.7"
+ },
+ "kp": {
+  "kp_max": 1.67
+ },
+ "wind": {
+  "wind_max": 552
+ },
+ "moon": {
+  "age": 2.8,
+  "ja": "三日月",
+  "en": "waxing crescent"
+ }
+}
