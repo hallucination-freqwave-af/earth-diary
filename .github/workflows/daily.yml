@@ -48,4 +48,4 @@ jobs:
           done
           echo "" >> outbox/issue.md
           echo "<!-- run:${{ github.run_id }} -->" >> outbox/issue.md
-          gh issue create --title "$(cat outbox/issue_title.txt)" --body-file outbox/issue.md --label earth-diary
+          gh issue create --title "$(cat outbox/issue_title.txt)" --body-file outbox/issue.md --label earth-diary --assignee "${{ github.repository_owner }}"
