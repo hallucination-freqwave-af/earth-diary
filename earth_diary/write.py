@@ -81,7 +81,7 @@ def write_diary(data: dict, mood: str) -> dict:
         model=MODEL,
         max_tokens=1200,
         system=PROMPT.read_text(encoding="utf-8"),
-        messages=[{"role": "user", "content": f"昨日のデータ:\n{facts}"}],
+        messages=[{"role": "user", "content": f"今日一日（直近24時間）のデータ:\n{facts}"}],
     )
     text = "".join(b.text for b in msg.content if b.type == "text").strip()
     return parse_diary(text)
