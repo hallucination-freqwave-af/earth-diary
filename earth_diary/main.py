@@ -34,6 +34,22 @@ def save_history(history: list[dict]) -> None:
         json.dumps(history[-400:], ensure_ascii=False, indent=1), encoding="utf-8")
 
 
+def recent_diaries(before: str, days: int = 3) -> list[str]:
+    """before の日より前の日記から、関西弁の本文だけを古い順に取り出す。"""
+    files = sorted(p for p in (ROOT / "diary").glob("*.md") if p.stem < before)[-days:]
+    out = []
+    for p in files:
+        blocks = p.read_text(encoding="utf-8").split("\n\n")[1:]  # 1段目は見出し
+        ja = []
+        for b in blocks:  # 英語（ASCIIで始まる段）か判定欄が来たら関西弁はおしまい
+            if not b.strip() or b.lstrip()[0].isascii() or b.startswith("──"):
+                break
+            ja.append(b)
+        if ja:
+            out.append("\n\n".join(ja))
+    return out
+
+
 def write(now: dt.datetime | None = None, data: dict | None = None, **video_kwargs) -> dict:
     """夜7時に、今日一日（直近24時間）の日記を書く。"""
     now = now or dt.datetime.now(dt.timezone.utc)
@@ -45,7 +61,7 @@ def write(now: dt.datetime | None = None, data: dict | None = None, **video_kwar
     data = data or collect(now)
     history = [h for h in load_history() if h.get("date") != stamp]
     mood = decide(data, history)
-    diary = write_diary(data, mood)
+    diary = write_diary(data, mood, recent_diaries(stamp))
     # 人に被害が出たかもしれない日は、気分の判定を出さず、太陽も割り込ませない
     grave = is_grave(data)
     shown = "静かに（被害の恐れのある地震）" if grave else mood
