@@ -1,12 +1,10 @@
 {
- "mood": "正直",
- "utc": "2026-11-12 04:07",
- "errors": [
-  "wind: 404 Client Error: Not Found for url: https://services.swpc.noaa.gov/products/solar-wind/plasma-1-day.json"
- ],
+ "mood": "達観",
+ "utc": "2026-11-12 04:11",
+ "errors": [],
  "quakes": {
   "grave": [],
-  "count": 203,
+  "count": 204,
   "m5_count": 8,
   "max_mag": 5.4,
   "top": [
@@ -14,7 +12,7 @@
     "mag": 5.4,
     "place": "South Sandwich Islands region",
     "time": 1794455156644,
-    "alert": null,
+    "alert": "green",
     "depth": 121.557,
     "mmi": 3.22,
     "cdi": null,
@@ -53,7 +51,9 @@
  "kp": {
   "kp_max": 2.67
  },
- "wind": null,
+ "wind": {
+  "wind_max": 566
+ },
  "moon": {
   "age": 2.3,
   "ja": "三日月",
