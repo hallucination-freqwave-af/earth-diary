@@ -88,7 +88,7 @@ def write_diary(data: dict, mood: str, recent: list[str] | None = None) -> dict:
     client = anthropic.Anthropic()
     msg = client.messages.create(
         model=MODEL,
-        max_tokens=1200,
+        max_tokens=3000,
         system=PROMPT.read_text(encoding="utf-8"),
         messages=[{"role": "user",
                    "content": f"今日一日（直近24時間）のデータ:\n{facts}{recent_for_prompt(recent or [])}"}],
