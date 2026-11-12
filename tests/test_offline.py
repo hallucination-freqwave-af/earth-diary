@@ -41,6 +41,9 @@ def test_summaries():
 
     wind = [["time_tag", "density", "speed", "temperature"], ["x", "3", "512.4", "1"], ["y", "2", None, "1"]]
     assert fetch.summarize_wind(wind) == {"wind_max": 512}
+    rtsw = [{"time_tag": "2026-11-11T21:40:00", "proton_speed": 612.3},
+            {"time_tag": "2026-11-09T21:40:00", "proton_speed": 900.0}]  # 24時間より前は数えない
+    assert fetch.summarize_wind(rtsw, NOW) == {"wind_max": 612}
 
 
 def data(kp, flare, mags, wind):
@@ -84,6 +87,10 @@ def test_compose():
     assert "最大フレア X5.1" in text and "Kp 8" in text and "969km/s" in text
     facts = write.facts_for_prompt(LOUD_DAY, mood.URUSAI)
     assert "M5.7" in facts and "日本の近く" in facts
+    assert "X5.1" not in facts and "大きい" in facts and "激しい嵐" in facts   # フレア記号は渡さない
+    # 11/12の実データ：M5以上8回はふつうの範囲、正直にはならない
+    real = data(2.67, "M1.7", [5.4, 5.1, 5.1, 5.0, 5.0, 5.0, 5.0, 5.0], None)
+    assert mood.raw_mood(real) == mood.TATSUKAN
 
 
 def test_grave_day():

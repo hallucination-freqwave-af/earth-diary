@@ -15,7 +15,13 @@ TIMEOUT = 30
 USGS_DAY = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson"
 SWPC_KP = "https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json"
 SWPC_FLARES = "https://services.swpc.noaa.gov/json/goes/primary/xray-flares-7-day.json"
-SWPC_WIND = "https://services.swpc.noaa.gov/products/solar-wind/plasma-1-day.json"
+# 太陽風は置き場所が変わることがあるので、上から順に試す
+SWPC_WIND = [
+    "https://services.swpc.noaa.gov/json/rtsw/rtsw_wind_1m.json",
+    "https://services.swpc.noaa.gov/products/solar-wind/plasma-3-day.json",
+    "https://services.swpc.noaa.gov/products/solar-wind/plasma-7-day.json",
+    "https://services.swpc.noaa.gov/products/solar-wind/plasma-1-day.json",
+]
 
 
 def _get(url):
@@ -147,20 +153,36 @@ def fetch_kp(now):
 
 
 # ---------- 太陽風 ----------
-def summarize_wind(rows) -> dict:
+def summarize_wind(rows, now: dt.datetime | None = None) -> dict:
+    """配列形式（[time_tag, density, speed, ...]）とオブジェクト形式（proton_speed）の両方を受ける。"""
+    since = (now - dt.timedelta(hours=24)) if now else None
     speeds = []
     for row in rows:
-        if not row or row[0] == "time_tag":
-            continue
         try:
-            speeds.append(float(row[2]))
+            if isinstance(row, dict):
+                t, v = row.get("time_tag"), row.get("proton_speed", row.get("speed"))
+            else:
+                if not row or row[0] == "time_tag":
+                    continue
+                t, v = row[0], row[2]
+            if since and t and _parse_time(t) < since:
+                continue
+            speeds.append(float(v))
         except (TypeError, ValueError, IndexError):
             continue
     return {"wind_max": round(max(speeds)) if speeds else None}
 
 
-def fetch_wind():
-    return summarize_wind(_get(SWPC_WIND))
+def fetch_wind(now):
+    last = None
+    for url in SWPC_WIND:
+        try:
+            out = summarize_wind(_get(url), now)
+            if out["wind_max"] is not None:
+                return out
+        except Exception as e:
+            last = e
+    raise RuntimeError(f"太陽風のデータが見つからんかった: {last}")
 
 
 # ---------- まとめ ----------
@@ -171,7 +193,7 @@ def collect(now: dt.datetime | None = None) -> dict:
         "quakes": fetch_quakes,
         "flares": lambda: fetch_flares(now),
         "kp": lambda: fetch_kp(now),
-        "wind": fetch_wind,
+        "wind": lambda: fetch_wind(now),
     }
     for key, fn in steps.items():
         try:

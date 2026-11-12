@@ -38,9 +38,18 @@ def facts_for_prompt(data: dict, mood: str, stance: str = "無視") -> str:
             lines.append(f"  - 日本の近く: M{e['mag']} {e['place']}")
     else:
         lines.append("地震: 測れんかった")
-    lines.append(f"太陽フレア: 最大 {f['max_class']}（{f['count']}回）" if f and f["max_class"]
-                 else "太陽フレア: 目立つものなし" if f else "太陽フレア: 測れんかった")
-    lines.append(f"地磁気: 最大Kp {k['kp_max']}" if k and k["kp_max"] is not None else "地磁気: 測れんかった")
+    # フレアとKpは記号を渡さず、強さの言葉にして渡す（本文で地震のMと混ざらないように）
+    if f and f["max_class"]:
+        size = {"X": "大きい", "M": "中くらい", "C": "小さい"}.get(f["max_class"][0].upper(), "ごく小さい")
+        lines.append(f"太陽フレア: いちばん強いのが{size}（{f['count']}回）")
+    else:
+        lines.append("太陽フレア: 目立つものなし" if f else "太陽フレア: 測れんかった")
+    if k and k["kp_max"] is not None:
+        kp = k["kp_max"]
+        level = "激しい嵐" if kp >= 7 else "嵐" if kp >= 5 else "ややざわつく" if kp >= 4 else "静か"
+        lines.append(f"地磁気: {level}")
+    else:
+        lines.append("地磁気: 測れんかった")
     lines.append(f"太陽風: 最大 秒速{w['wind_max']}km" if w and w["wind_max"] else "太陽風: 測れんかった")
     if m:
         lines.append(f"月: {m['ja']}（月齢{m['age']}）")

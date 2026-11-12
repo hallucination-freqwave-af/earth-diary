@@ -31,11 +31,12 @@ def raw_mood(data: dict) -> str:
     m5 = _v(data, "quakes", "m5_count") or 0
     wind = _v(data, "wind", "wind_max") or 0
 
-    if kp >= 6 or flare >= 4.0 or max_mag >= 7.0 or wind >= 800 or (kp >= 5 and m5 >= 5):
+    # M5以上の地震は世界全体で一日4〜5回がふつう。それを基準に、多い日だけ反応する
+    if kp >= 6 or flare >= 4.0 or max_mag >= 7.0 or wind >= 800 or (kp >= 5 and m5 >= 8):
         return URUSAI
-    if kp >= 4 or flare >= 3.5 or max_mag >= 6.0 or m5 >= 6 or wind >= 650:
+    if kp >= 4 or flare >= 3.5 or max_mag >= 6.0 or m5 >= 10 or wind >= 650:
         return SHOJIKI
-    if kp <= 2.34 and flare < 3.0 and max_mag < 5.5 and m5 <= 1:
+    if kp <= 2.34 and flare < 3.0 and max_mag < 5.5 and m5 <= 2:
         return QUIET
     return TATSUKAN
 
