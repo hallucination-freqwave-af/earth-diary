@@ -65,7 +65,16 @@ def is_grave(data: dict) -> bool:
     return bool((data.get("quakes") or {}).get("grave"))
 
 
-def write_diary(data: dict, mood: str) -> dict:
+def recent_for_prompt(recent: list[str]) -> str:
+    """直近の日記（関西弁の本文）を、書き手に見せる形にする。古い順。"""
+    if not recent:
+        return ""
+    blocks = [f"[{i}日前]\n{t.strip()}" for i, t in zip(range(len(recent), 0, -1), recent)]
+    return ("\n\nここ数日、自分が書いた日記（これと同じ言い回し・比喩・締めは使わない）:\n"
+            + "\n\n".join(blocks))
+
+
+def write_diary(data: dict, mood: str, recent: list[str] | None = None) -> dict:
     grave = is_grave(data)
     facts = facts_for_prompt(data, mood, human_stance("被害の恐れ" if grave else mood, data.get("utc", "")))
     if grave:
@@ -81,7 +90,8 @@ def write_diary(data: dict, mood: str) -> dict:
         model=MODEL,
         max_tokens=1200,
         system=PROMPT.read_text(encoding="utf-8"),
-        messages=[{"role": "user", "content": f"今日一日（直近24時間）のデータ:\n{facts}"}],
+        messages=[{"role": "user",
+                   "content": f"今日一日（直近24時間）のデータ:\n{facts}{recent_for_prompt(recent or [])}"}],
     )
     text = "".join(b.text for b in msg.content if b.type == "text").strip()
     return parse_diary(text)
