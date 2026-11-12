@@ -1,0 +1,71 @@
+name: 地球日記を投稿
+
+# 承認メール（Issue）に又七が「ok」と返信したら、その日の日記をXに投稿する
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+  actions: read
+
+concurrency:
+  group: earth-diary-post-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  check:
+    name: 返事を読む
+    if: >-
+      contains(github.event.issue.labels.*.name, 'earth-diary') &&
+      github.event.issue.state == 'open' &&
+      github.event.comment.user.login == github.repository_owner
+    runs-on: ubuntu-latest
+    outputs:
+      ok: ${{ steps.ok.outputs.ok }}
+      run_id: ${{ steps.run.outputs.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - id: ok
+        env:
+          COMMENT: ${{ github.event.comment.body }}
+        run: python -m earth_diary.main ok
+      - id: run
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: |
+          echo "run_id=$(printf '%s' "$ISSUE_BODY" | grep -o 'run:[0-9]*' | head -1 | cut -d: -f2)" >> "$GITHUB_OUTPUT"
+
+  post:
+    name: Xに投稿
+    needs: check
+    if: needs.check.outputs.ok == 'true' && needs.check.outputs.run_id != ''
+    runs-on: ubuntu-latest
+    environment: x-post        # Xの鍵はこの環境の中にある
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: earth-diary
+          path: outbox/
+          run-id: ${{ needs.check.outputs.run_id }}
+          github-token: ${{ github.token }}
+      - name: 投稿
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+        run: python -m earth_diary.main post
+      - name: Issueを閉じる
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue close ${{ github.event.issue.number }} --repo ${{ github.repository }} --comment "Xに投稿しました。"

@@ -87,6 +87,14 @@ def write(now: dt.datetime | None = None, data: dict | None = None, **video_kwar
                "grave": grave}
     (OUTBOX / "post.json").write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
 
+    # 承認のメール（Issue）の中身。メールの中で全文が読めるように
+    warn = "⚠️ 被害の恐れのある地震がある日です。言葉を確かめてから返信してください。\n\n" if grave else ""
+    (OUTBOX / "issue_title.txt").write_text(f"地球日記 {label}", encoding="utf-8")
+    (OUTBOX / "issue.md").write_text(
+        f"{warn}{text}\n\n動画：{'あり' if video else 'なし（文字だけで投稿）'}\n\n"
+        "---\nこのメールに **ok** とだけ返信したら、Xに投稿します。返信しなければ投稿しません。\n",
+        encoding="utf-8")
+
     # 承認画面で読めるように、Actionsのまとめ欄にも書く
     summary = os.environ.get("GITHUB_STEP_SUMMARY")
     if summary:
@@ -107,6 +115,28 @@ def post_outbox() -> list[str]:
     return ids
 
 
+OK_WORDS = {"ok", "okay", "おk", "おけ", "おっけー", "おっけい", "承認", "はい", "👍"}
+
+
+def is_ok(comment: str) -> bool:
+    """返信の一行目が ok かどうか。メールの引用（> で始まる行）や署名は見ない。"""
+    for line in comment.splitlines():
+        line = line.strip()
+        if not line or line.startswith(">"):
+            continue
+        return line.strip("。.!！ ").lower() in OK_WORDS
+    return False
+
+
 if __name__ == "__main__":
     stage = sys.argv[1] if len(sys.argv) > 1 else "write"
-    post_outbox() if stage == "post" else write()
+    if stage == "post":
+        post_outbox()
+    elif stage == "ok":  # 返事が ok なら ok=true を出す
+        ok = is_ok(os.environ.get("COMMENT", ""))
+        print(f"ok={'true' if ok else 'false'}")
+        if os.environ.get("GITHUB_OUTPUT"):
+            with open(os.environ["GITHUB_OUTPUT"], "a") as fh:
+                fh.write(f"ok={'true' if ok else 'false'}\n")
+    else:
+        write()
