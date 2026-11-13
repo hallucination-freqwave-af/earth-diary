@@ -16,7 +16,7 @@ from pathlib import Path
 from .fetch import collect
 from .mood import decide, raw_mood
 from .video import CREDIT_EARTH, CREDIT_SUN, make_video
-from .write import compose, is_grave, verdict_lines, write_diary
+from .write import compose, is_grave, same_as_yesterday, verdict_lines, write_diary
 
 ROOT = Path(__file__).resolve().parent.parent
 TAG = "#EarthDiary"  # 目次としてのタグ。押すと過去の日記が並ぶ
@@ -61,7 +61,9 @@ def write(now: dt.datetime | None = None, data: dict | None = None, **video_kwar
     data = data or collect(now)
     history = [h for h in load_history() if h.get("date") != stamp]
     mood = decide(data, history)
-    diary = write_diary(data, mood, recent_diaries(stamp))
+    prev_files = sorted(p for p in (ROOT / "data").glob("????-??-??.json") if p.stem < stamp)
+    prev = json.loads(prev_files[-1].read_text(encoding="utf-8")) if prev_files else None
+    diary = write_diary(data, mood, recent_diaries(stamp), same_as_yesterday(data, prev))
     # 人に被害が出たかもしれない日は、気分の判定を出さず、太陽も割り込ませない
     grave = is_grave(data)
     shown = "静かに（被害の恐れのある地震）" if grave else mood

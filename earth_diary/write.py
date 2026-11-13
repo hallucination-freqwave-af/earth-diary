@@ -65,6 +65,29 @@ def is_grave(data: dict) -> bool:
     return bool((data.get("quakes") or {}).get("grave"))
 
 
+def _region(place: str) -> str:
+    return place.split(",")[-1].strip().removesuffix(" region").strip().lower()
+
+
+def same_as_yesterday(data: dict, prev: dict | None) -> bool:
+    """昨日とほぼ同じ一日か。気分・揺れた場所・強さ・太陽のざわつきが揃っていたら同じとみなす。"""
+    from .mood import raw_mood
+    if not prev or is_grave(data):
+        return False
+    q, pq = data.get("quakes") or {}, prev.get("quakes") or {}
+    if not q.get("top") or not pq.get("top"):
+        return False
+    if raw_mood(data) != raw_mood(prev):
+        return False
+    regions = [_region(e["place"]) for e in q["top"][:3]]
+    pregions = [_region(e["place"]) for e in pq["top"][:3]]
+    places_alike = regions[0] == pregions[0] or len(set(regions) & set(pregions)) >= 2
+    mag_alike = abs((q.get("max_mag") or 0) - (pq.get("max_mag") or 0)) < 0.6
+    m5_alike = abs((q.get("m5_count") or 0) - (pq.get("m5_count") or 0)) <= 2
+    kp, pkp = (data.get("kp") or {}).get("kp_max") or 0, (prev.get("kp") or {}).get("kp_max") or 0
+    return places_alike and mag_alike and m5_alike and (kp >= 4) == (pkp >= 4)
+
+
 def recent_for_prompt(recent: list[str]) -> str:
     """直近の日記（関西弁の本文）を、書き手に見せる形にする。古い順。"""
     if not recent:
@@ -74,9 +97,11 @@ def recent_for_prompt(recent: list[str]) -> str:
             + "\n\n".join(blocks))
 
 
-def write_diary(data: dict, mood: str, recent: list[str] | None = None) -> dict:
+def write_diary(data: dict, mood: str, recent: list[str] | None = None, same: bool = False) -> dict:
     grave = is_grave(data)
     facts = facts_for_prompt(data, mood, human_stance("被害の恐れ" if grave else mood, data.get("utc", "")))
+    if same and mood != "悟った":
+        facts = "昨日とほぼ同じ: はい\n" + facts
     if grave:
         places = "、".join(f"M{e['mag']} {e['place']}" for e in data["quakes"]["grave"])
         facts = "被害の恐れ: あり（" + places + "）\n" + facts
