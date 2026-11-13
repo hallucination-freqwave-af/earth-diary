@@ -1,0 +1,127 @@
+{
+ "mood": "達観",
+ "utc": "2026-11-13 17:39",
+ "errors": [],
+ "quakes": {
+  "grave": [],
+  "count": 209,
+  "m5_count": 7,
+  "max_mag": 5.8,
+  "top": [
+   {
+    "mag": 5.8,
+    "place": "79 km WSW of Changuillo, Peru",
+    "time": 1794588182131,
+    "alert": null,
+    "depth": 10,
+    "mmi": 4.589,
+    "cdi": 5,
+    "felt": 4,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.8,
+    "place": "148 km NW of Kavieng, Papua New Guinea",
+    "time": 1794521046729,
+    "alert": "green",
+    "depth": 10,
+    "mmi": 6.919,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.2,
+    "place": "79 km NE of Kuqa, China",
+    "time": 1794586671680,
+    "alert": null,
+    "depth": 10,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ],
+  "near_japan": []
+ },
+ "flares": {
+  "count": 4,
+  "max_class": "C1.7"
+ },
+ "kp": {
+  "kp_max": 1.67
+ },
+ "wind": {
+  "wind_max": 462
+ },
+ "co2": {
+  "ppm": 429.42,
+  "date": "2026-11-12",
+  "year_change": 2.84
+ },
+ "seaice": {
+  "north": {
+   "extent": 8.85,
+   "date": "2026-11-12",
+   "change_5d": 0.3,
+   "vs_normal": -1.59
+  },
+  "south": {
+   "extent": 14.99,
+   "date": "2026-11-12",
+   "change_5d": -0.48,
+   "vs_normal": -1.49
+  }
+ },
+ "hazards": {
+  "count": 100,
+  "events": [
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Vietnam",
+    "country": "Vietnam",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Italy",
+    "country": "Italy",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in India",
+    "country": "India",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 10007 ha"
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in South Sudan, Sudan",
+    "country": "South Sudan, Sudan",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 5072 ha"
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in South Sudan",
+    "country": "South Sudan",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 5002 ha"
+   }
+  ],
+  "grave": []
+ },
+ "moon": {
+  "age": 3.8,
+  "ja": "三日月",
+  "en": "waxing crescent"
+ }
+}
