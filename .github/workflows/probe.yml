@@ -1,0 +1,27 @@
+name: probe
+on:
+  push:
+    branches: [probe-data]
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install -r requirements.txt
+      - run: |
+          python - <<'PY'
+          import json, datetime as dt
+          from earth_diary import fetch
+          now = dt.datetime.now(dt.timezone.utc)
+          for name, fn in [("co2", fetch.fetch_co2), ("seaice", fetch.fetch_seaice), ("hazards", lambda: fetch.fetch_hazards(now))]:
+              try: print(name, json.dumps(fn(), ensure_ascii=False)[:1500])
+              except Exception as e: print(name, "ERROR", repr(e)[:500])
+          import requests
+          r = requests.get(fetch.GDACS, params={"eventlist":"TC;FL;VO;WF","fromdate":(now-dt.timedelta(days=10)).strftime("%Y-%m-%d"),"todate":now.strftime("%Y-%m-%d"),"alertlevel":"green;orange;red"}, headers=fetch.UA, timeout=30)
+          f = (r.json().get("features") or [{}])[0].get("properties", {})
+          print("GDACS keys", sorted(f.keys())); print("todate", f.get("todate"), "alert", f.get("alertlevel"))
+          t = fetch._text(fetch.CO2_DAILY[0]).splitlines(); print("CO2 tail", t[-2:])
+          t = fetch._text(fetch.SEAICE_HOSTS[0]+"/north/daily/data/N_seaice_extent_daily_v4.0.csv").splitlines(); print("ICE head", t[:2], "tail", t[-1:])
+          PY
