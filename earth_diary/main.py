@@ -66,7 +66,7 @@ def write(now: dt.datetime | None = None, data: dict | None = None, **video_kwar
     diary = write_diary(data, mood, recent_diaries(stamp), same_as_yesterday(data, prev))
     # 人に被害が出たかもしれない日は、気分の判定を出さず、太陽も割り込ませない
     grave = is_grave(data)
-    shown = "静かに（被害の恐れのある地震）" if grave else mood
+    shown = "静かに（被害の恐れのある出来事）" if grave else mood
     text = compose(label, diary, data, shown)
 
     OUTBOX.mkdir(exist_ok=True)
@@ -90,7 +90,7 @@ def write(now: dt.datetime | None = None, data: dict | None = None, **video_kwar
     (OUTBOX / "post.json").write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
 
     # 承認のメール（Issue）の中身。メールの中で全文が読めるように
-    warn = "⚠️ 被害の恐れのある地震がある日です。言葉を確かめてから返信してください。\n\n" if grave else ""
+    warn = "⚠️ 被害の恐れのある出来事がある日です。言葉を確かめてから返信してください。\n\n" if grave else ""
     (OUTBOX / "issue_title.txt").write_text(f"地球日記 {label}", encoding="utf-8")
     (OUTBOX / "issue.md").write_text(
         f"{warn}{text}\n\n動画：{'あり' if video else 'なし（文字だけで投稿）'}\n\n"
@@ -100,7 +100,7 @@ def write(now: dt.datetime | None = None, data: dict | None = None, **video_kwar
     # 承認画面で読めるように、Actionsのまとめ欄にも書く
     summary = os.environ.get("GITHUB_STEP_SUMMARY")
     if summary:
-        head = "⚠️ 被害の恐れのある地震がある日です。言葉を確かめてから承認してください。\n\n" if grave else ""
+        head = "⚠️ 被害の恐れのある出来事がある日です。言葉を確かめてから承認してください。\n\n" if grave else ""
         with open(summary, "a", encoding="utf-8") as fh:
             fh.write(f"{head}```\n{text}\n```\n\n動画：{'あり（Artifactsの earth-diary から見られます）' if video else 'なし（文字だけで投稿）'}\n")
     print(text)

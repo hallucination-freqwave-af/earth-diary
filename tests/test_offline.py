@@ -164,3 +164,16 @@ def test_same_as_yesterday():
     assert write.same_as_yesterday(alike, day)
     assert not write.same_as_yesterday(other, day)
     assert not write.same_as_yesterday(day, None)
+
+
+def test_new_body_parts():
+    co2 = fetch.summarize_co2("# c\n2025,11,11,2025.86,425.70\n2026,11,10,2026.85,428.00\n2026,11,11,2026.86,428.38\n")
+    assert co2["ppm"] == 428.38 and co2["year_change"] is not None
+    ice = fetch.summarize_seaice("Year, Month, Day, Extent\nYYYY, MM, DD, 10^6\n2026, 11, 6, 8.43, 0\n2026, 11, 11, 8.838, 0\n")
+    assert ice["extent"] == 8.84 and ice["change_5d"] == 0.41
+    geo = {"features": [{"properties": {"eventtype": "TC", "eventname": "PENA-26", "country": "", "alertlevel": "Orange",
+                                         "todate": "2026-11-11T01:00:00", "severitydata": {"severitytext": "Typhoon"}}},
+                        {"properties": {"eventtype": "DR", "alertlevel": "Orange", "todate": "2026-11-11T01:00:00"}}]}
+    hz = fetch.summarize_hazards(geo, NOW)
+    assert hz["count"] == 1 and hz["grave"][0]["name"] == "PENA-26"   # 干ばつは数えない
+    assert write.is_grave({"quakes": {"grave": []}, "hazards": hz})

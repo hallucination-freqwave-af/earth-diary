@@ -24,6 +24,24 @@ SWPC_WIND = [
 ]
 
 
+# 息（CO2）・冷え（海氷）・ほかの災害
+CO2_DAILY = [
+    "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_daily_mlo.csv",
+    "https://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/in_situ_co2/daily/daily_in_situ_co2_mlo.csv",
+]
+SEAICE_HOSTS = [
+    "https://noaadata.apps.nsidc.org/NOAA/G02135",
+    "https://masie_web.apps.nsidc.org/pub/DATASETS/NOAA/G02135",
+]
+GDACS = "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH"
+
+
+def _text(url):
+    r = requests.get(url, headers=UA, timeout=TIMEOUT)
+    r.raise_for_status()
+    return r.text
+
+
 def _get(url):
     r = requests.get(url, headers=UA, timeout=TIMEOUT)
     r.raise_for_status()
@@ -189,6 +207,136 @@ def fetch_wind(now):
     raise RuntimeError(f"太陽風のデータが見つからんかった: {last}")
 
 
+# ---------- 息（CO2、マウナロア） ----------
+def summarize_co2(text: str) -> dict:
+    """年,月,日,…,ppm の行から、いちばん新しい値と一年前の同じころの値を出す。"""
+    rows = []
+    for line in text.splitlines():
+        if not line.strip() or line.lstrip().startswith(("#", "%", '"')):
+            continue
+        cols = [c.strip() for c in line.split(",")]
+        try:
+            y, m, d = int(cols[0]), int(cols[1]), int(cols[2])
+            ppm = float(cols[-1]) if len(cols) <= 5 else float(next(c for c in cols[4:] if c and float(c) > 100))
+        except (ValueError, IndexError, StopIteration):
+            continue
+        if ppm > 100:
+            rows.append((dt.date(y, m, d), ppm))
+    if not rows:
+        return {"ppm": None}
+    day, ppm = rows[-1]
+    week = [v for t, v in rows if 0 <= (day - t).days < 7]
+    ago = [v for t, v in rows if 0 <= (day - t).days - 365 < 7]
+    change = round(sum(week) / len(week) - sum(ago) / len(ago), 2) if week and ago else None
+    return {"ppm": round(ppm, 2), "date": day.isoformat(), "year_change": change}
+
+
+def fetch_co2():
+    last = None
+    for url in CO2_DAILY:
+        try:
+            out = summarize_co2(_text(url))
+            if out["ppm"]:
+                return out
+        except Exception as e:
+            last = e
+    raise RuntimeError(f"CO2が取れんかった: {last}")
+
+
+# ---------- 冷え（北極・南極の海氷） ----------
+def _seaice_rows(text: str) -> list[tuple[dt.date, float]]:
+    rows = []
+    for line in text.splitlines():
+        cols = [c.strip() for c in line.split(",")]
+        try:
+            rows.append((dt.date(int(cols[0]), int(cols[1]), int(cols[2])), float(cols[3])))
+        except (ValueError, IndexError):
+            continue  # 見出しや単位の行
+    return rows
+
+
+def summarize_seaice(daily: str, clim: str | None = None) -> dict:
+    rows = _seaice_rows(daily)
+    if not rows:
+        return {"extent": None}
+    day, ext = rows[-1]
+    week = [v for t, v in rows if (day - t).days == 5]
+    out = {"extent": round(ext, 2), "date": day.isoformat(),
+           "change_5d": round(ext - week[-1], 2) if week else None, "vs_normal": None}
+    if clim:
+        doy = day.timetuple().tm_yday
+        for line in clim.splitlines():
+            cols = [c.strip() for c in line.split(",")]
+            try:
+                if int(cols[0]) == doy:
+                    out["vs_normal"] = round(ext - float(cols[1]), 2)  # 1981-2010年の平均との差
+                    break
+            except (ValueError, IndexError):
+                continue
+    return out
+
+
+def fetch_seaice():
+    out, last = {}, None
+    for pole, p in (("north", "N"), ("south", "S")):
+        for host in SEAICE_HOSTS:
+            try:
+                daily = _text(f"{host}/{pole}/daily/data/{p}_seaice_extent_daily_v4.0.csv")
+                try:
+                    clim = _text(f"{host}/{pole}/daily/data/{p}_seaice_extent_climatology_1981-2010_v4.0.csv")
+                except Exception:
+                    clim = None
+                out[pole] = summarize_seaice(daily, clim)
+                break
+            except Exception as e:
+                last = e
+    if not out:
+        raise RuntimeError(f"海氷が取れんかった: {last}")
+    return out
+
+
+# ---------- ほかの災害（台風・洪水・火山・山火事、GDACS） ----------
+HAZARD_JA = {"TC": "台風・サイクロン", "FL": "洪水", "VO": "火山", "WF": "山火事"}
+
+
+def summarize_hazards(geo: dict, now: dt.datetime) -> dict:
+    """今まさに続いている出来事だけ。干ばつは毎日ほぼ同じなので入れない。地震はUSGSで見る。"""
+    since = now - dt.timedelta(hours=36)
+    events = []
+    for f in geo.get("features") or []:
+        p = f.get("properties") or {}
+        kind = p.get("eventtype")
+        if kind not in HAZARD_JA:
+            continue
+        try:
+            if p.get("todate") and _parse_time(p["todate"]) < since:
+                continue
+        except ValueError:
+            pass
+        events.append({
+            "type": kind, "kind_ja": HAZARD_JA[kind],
+            "name": p.get("eventname") or p.get("name") or "",
+            "country": p.get("country") or "",
+            "alert": (p.get("alertlevel") or "").lower(),
+            "severity": ((p.get("severitydata") or {}).get("severitytext") or "")[:120],
+        })
+    rank = {"red": 0, "orange": 1, "green": 2}
+    events.sort(key=lambda e: rank.get(e["alert"], 3))
+    grave = [e for e in events if e["alert"] in ("orange", "red")]
+    return {"count": len(events), "events": events[:5], "grave": grave[:3]}
+
+
+def fetch_hazards(now):
+    r = requests.get(GDACS, headers=UA, timeout=TIMEOUT, params={
+        "eventlist": "TC;FL;VO;WF",
+        "fromdate": (now - dt.timedelta(days=10)).strftime("%Y-%m-%d"),
+        "todate": now.strftime("%Y-%m-%d"),
+        "alertlevel": "green;orange;red",
+    })
+    r.raise_for_status()
+    return summarize_hazards(r.json() if r.text.strip() else {}, now)
+
+
 # ---------- まとめ ----------
 def collect(now: dt.datetime | None = None) -> dict:
     now = now or dt.datetime.now(dt.timezone.utc)
@@ -198,6 +346,9 @@ def collect(now: dt.datetime | None = None) -> dict:
         "flares": lambda: fetch_flares(now),
         "kp": lambda: fetch_kp(now),
         "wind": lambda: fetch_wind(now),
+        "co2": fetch_co2,
+        "seaice": fetch_seaice,
+        "hazards": lambda: fetch_hazards(now),
     }
     for key, fn in steps.items():
         try:

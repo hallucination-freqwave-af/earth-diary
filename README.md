@@ -50,7 +50,7 @@
 
 GitHub Actions が毎晩19時ごろ（日本時間）に回します。
 
-1. データを取る：地震（USGS）、太陽フレア・地磁気・太陽風（NOAA宇宙天気予報センター）、月齢（計算）。直近24時間ぶん
+1. データを取る：地震（USGS）、太陽フレア・地磁気・太陽風（NOAA宇宙天気予報センター）、息＝CO2（マウナロア）、冷え＝北極・南極の海氷（NSIDC）、台風・洪水・火山・山火事（GDACS）、月齢（計算）。直近24時間ぶん
 2. 気分を決める
 3. 日記を書く（Claude）。関西弁 → 英語 → 判定 の順
 4. ひまわりが撮った地球の一日を短い動画にする。荒れた日は太陽（NASA SDO）が途中から割り込んでくる
@@ -59,7 +59,7 @@ GitHub Actions が毎晩19時ごろ（日本時間）に回します。
 
 ### 人に被害が出たかもしれない日
 
-次のどれかに当たる地震があった日は、気分の判定より先に「静かに」書く。笑い・愚痴・軽い比喩は使わない。判定欄にも気分を出さず、太陽も割り込ませない。
+GDACSの警報がオレンジ・赤の台風・洪水・火山・山火事がある日、または次のどれかに当たる地震があった日は、気分の判定より先に「静かに」書く。笑い・愚痴・軽い比喩は使わない。判定欄にも気分を出さず、太陽も割り込ませない。
 
 - USGSの被害推定（PAGER）が黄色以上
 - M7以上
@@ -101,6 +101,9 @@ python -m earth_diary.main write
 
 - 地震：U.S. Geological Survey
 - 宇宙天気：NOAA Space Weather Prediction Center
+- CO2：NOAA Global Monitoring Laboratory（Mauna Loa）
+- 海氷：NSIDC Sea Ice Index
+- 台風・洪水・火山・山火事：GDACS（Global Disaster Alert and Coordination System）
 - 地球の映像：Japan Meteorological Agency (JMA), NOAA/NESDIS, Colorado State University-CIRA（ひまわり True Color Reproduction）
 - 太陽の映像：NASA/SDO and the AIA science team
 
