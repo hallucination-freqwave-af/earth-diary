@@ -51,6 +51,28 @@ def facts_for_prompt(data: dict, mood: str, stance: str = "無視") -> str:
     else:
         lines.append("地磁気: 測れんかった")
     lines.append(f"太陽風: 最大 秒速{w['wind_max']}km" if w and w["wind_max"] else "太陽風: 測れんかった")
+    co2, ice, hz = data.get("co2"), data.get("seaice"), data.get("hazards")
+    if co2 and co2.get("ppm"):
+        yc = co2.get("year_change")
+        lines.append(f"息（CO2）: {co2['ppm']}ppm" + (f"、一年前より {yc:+}ppm" if yc is not None else ""))
+    if ice:
+        for pole, ja in (("north", "北極"), ("south", "南極")):
+            e = ice.get(pole) or {}
+            if e.get("extent"):
+                bits = [f"{e['extent']}百万km²"]
+                if e.get("change_5d") is not None:
+                    bits.append(f"5日で {e['change_5d']:+}")
+                if e.get("vs_normal") is not None:
+                    bits.append(f"昔の平年より {e['vs_normal']:+}")
+                lines.append(f"海氷（{ja}）: " + "、".join(bits))
+    if hz is not None:
+        if hz.get("events"):
+            lines.append(f"ほかの出来事: {hz['count']}件")
+            for e in hz["events"]:
+                where = e["country"] or e["name"]
+                lines.append(f"  - {e['kind_ja']} {where}（警報 {e['alert'] or '不明'}）{e['severity']}")
+        else:
+            lines.append("ほかの出来事: なし")
     if m:
         lines.append(f"月: {m['ja']}（月齢{m['age']}）")
     return "\n".join(lines)
@@ -61,8 +83,15 @@ def _template(mood: str) -> dict:
     return {"ja": f"（テスト）今日の気分は{mood}。", "en": f"(test) Today I felt {MOOD_EN.get(mood, mood)}."}
 
 
+def grave_list(data: dict) -> list[str]:
+    """人に被害が出たかもしれない出来事（地震・台風・洪水など）。"""
+    out = [f"地震 M{e['mag']} {e['place']}" for e in (data.get("quakes") or {}).get("grave") or []]
+    out += [f"{e['kind_ja']} {e['country'] or e['name']}" for e in (data.get("hazards") or {}).get("grave") or []]
+    return out
+
+
 def is_grave(data: dict) -> bool:
-    return bool((data.get("quakes") or {}).get("grave"))
+    return bool(grave_list(data))
 
 
 def _region(place: str) -> str:
@@ -103,7 +132,7 @@ def write_diary(data: dict, mood: str, recent: list[str] | None = None, same: bo
     if same and mood != "悟った":
         facts = "昨日とほぼ同じ: はい\n" + facts
     if grave:
-        places = "、".join(f"M{e['mag']} {e['place']}" for e in data["quakes"]["grave"])
+        places = "、".join(grave_list(data))
         facts = "被害の恐れ: あり（" + places + "）\n" + facts
     if not os.environ.get("ANTHROPIC_API_KEY"):
         return _template(mood)
@@ -147,12 +176,17 @@ def verdict_lines(data: dict, mood: str) -> str:
     if w and w["wind_max"]:
         sun.append(f"太陽風 {w['wind_max']}km/s")
     quake = f"{q['count']}回／最大M{q['max_mag']} {q['top'][0]['place']}" if q and q["top"] else "測れんかった"
-    return "\n".join([
-        "──",
-        f"判定：{mood}",
-        f"太陽：{'／'.join(sun) if sun else '測れんかった'}",
-        f"地震：{quake}",
-    ])
+    lines = ["──", f"判定：{mood}", f"太陽：{'／'.join(sun) if sun else '測れんかった'}", f"地震：{quake}"]
+    co2, ice, hz = data.get("co2"), data.get("seaice"), data.get("hazards")
+    if co2 and co2.get("ppm"):
+        lines.append(f"息：CO2 {co2['ppm']}ppm")
+    if ice:
+        n, s_ = (ice.get("north") or {}).get("extent"), (ice.get("south") or {}).get("extent")
+        if n or s_:
+            lines.append(f"氷：北 {n}／南 {s_} 百万km²")
+    if hz and hz.get("events"):
+        lines.append("ほか：" + "、".join(f"{e['kind_ja']}（{e['country'] or e['name']}）" for e in hz["events"][:3]))
+    return "\n".join(lines)
 
 
 def compose(date_label: str, diary: dict, data: dict, mood: str) -> str:
