@@ -70,8 +70,10 @@ def write(now: dt.datetime | None = None, data: dict | None = None, **video_kwar
     text = compose(label, diary, data, shown)
 
     OUTBOX.mkdir(exist_ok=True)
+    # 動画は荒れた日（正直・うるさい）だけ。付いていること自体が「今日は荒れた」の合図
     video_mood = "達観" if grave else mood
-    video = make_video(video_mood, OUTBOX / "video.mp4", now=now, **video_kwargs)
+    rough = not grave and mood in ("正直", "うるさい")
+    video = make_video(video_mood, OUTBOX / "video.mp4", now=now, **video_kwargs) if rough else None
     credits = CREDIT_EARTH + (" / " + CREDIT_SUN if video and video_mood in ("正直", "うるさい") else "")
     if video:
         text += f"\n映像：{credits}"
