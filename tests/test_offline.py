@@ -152,3 +152,15 @@ if __name__ == "__main__":
         if name.startswith("test_"):
             fn()
             print("ok", name)
+
+
+def test_same_as_yesterday():
+    day = {"quakes": {"top": [{"mag": 5.4, "place": "South Sandwich Islands region"},
+                              {"mag": 5.1, "place": "80 km W of Panguna, Papua New Guinea"}],
+                      "max_mag": 5.4, "m5_count": 3, "grave": []},
+           "flares": {"max_class": "C5.0"}, "kp": {"kp_max": 2.67}, "wind": {"wind_max": 500}}
+    alike = {**day, "quakes": {**day["quakes"], "max_mag": 5.6, "m5_count": 4}}
+    other = {**day, "quakes": {**day["quakes"], "top": [{"mag": 5.4, "place": "off the coast of Chile"}]}}
+    assert write.same_as_yesterday(alike, day)
+    assert not write.same_as_yesterday(other, day)
+    assert not write.same_as_yesterday(day, None)
