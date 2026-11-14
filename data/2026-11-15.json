@@ -1,0 +1,107 @@
+{
+ "mood": "達観",
+ "utc": "2026-11-14 16:31",
+ "errors": [
+  "hazards: HTTPSConnectionPool(host='www.gdacs.org', port=443): Read timed out. (read timeout=30)"
+ ],
+ "quakes": {
+  "grave": [],
+  "count": 191,
+  "m5_count": 6,
+  "max_mag": 5.8,
+  "top": [
+   {
+    "mag": 5.8,
+    "place": "79 km WSW of Changuillo, Peru",
+    "time": 1794588182131,
+    "alert": "green",
+    "depth": 10,
+    "mmi": 4.493,
+    "cdi": 5,
+    "felt": 7,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.5,
+    "place": "northern Mid-Atlantic Ridge",
+    "time": 1794648373073,
+    "alert": "green",
+    "depth": 10,
+    "mmi": 0,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.2,
+    "place": "State of Yap, Federated States of Micronesia",
+    "time": 1794639146706,
+    "alert": null,
+    "depth": 10,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ],
+  "near_japan": [
+   {
+    "mag": 4.6,
+    "place": "74 km S of Yudomari, Japan",
+    "time": 1794612174402,
+    "alert": null,
+    "depth": 40.852,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 4.1,
+    "place": "southeast of Shikoku, Japan",
+    "time": 1794641099364,
+    "alert": null,
+    "depth": 506.899,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ]
+ },
+ "flares": {
+  "count": 8,
+  "max_class": "C5.5"
+ },
+ "kp": {
+  "kp_max": 1.67
+ },
+ "wind": {
+  "wind_max": 444
+ },
+ "co2": {
+  "ppm": 428.88,
+  "date": "2026-11-13",
+  "year_change": 2.58
+ },
+ "seaice": {
+  "north": {
+   "extent": 8.95,
+   "date": "2026-11-13",
+   "change_5d": 0.37,
+   "vs_normal": -1.58
+  },
+  "south": {
+   "extent": 15.02,
+   "date": "2026-11-13",
+   "change_5d": -0.29,
+   "vs_normal": -1.35
+  }
+ },
+ "hazards": null,
+ "moon": {
+  "age": 4.8,
+  "ja": "三日月",
+  "en": "waxing crescent"
+ }
+}
