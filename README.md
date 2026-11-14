@@ -84,9 +84,11 @@ GDACSの警報がオレンジ・赤の台風・洪水・火山・山火事があ
 | `X_API_KEY` / `X_API_SECRET` | X 開発者アプリの API Key と Secret |
 | `X_ACCESS_TOKEN` / `X_ACCESS_SECRET` | 投稿するアカウントの Access Token と Secret（読み書き権限） |
 
-3. スマホの GitHub アプリで通知をオンにしておく。毎晩「承認待ち」が届くので、開いて日記を読み、Approve を押す
-   - 日記の本文は、その実行のまとめ（Summary）に出ます。動画は Artifacts の `earth-diary` から見られます
-   - 承認しないまま放っておけば、その日は投稿されません
+3. GitHub のメール通知をオンにしておく。毎晩、日記の本文入りのメール（Issue）が届くので、読んで **ok** とだけ返信する
+   - Issues タブで、その日の Issue に「ok」とコメントしても同じ
+   - 動画は Actions の実行の Artifacts `earth-diary` から見られます
+   - 返信しないまま放っておけば、その日は投稿されません
+   - ok を2回送っても、投稿されるのは1回だけです
 
 最初は Actions タブ →「地球日記」→ Run workflow で一回回して、承認待ちのところで中身を確かめてから決めてください。
 
