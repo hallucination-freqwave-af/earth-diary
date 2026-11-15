@@ -1,0 +1,127 @@
+{
+ "mood": "達観",
+ "utc": "2026-11-15 16:58",
+ "errors": [],
+ "quakes": {
+  "grave": [],
+  "count": 185,
+  "m5_count": 3,
+  "max_mag": 5.5,
+  "top": [
+   {
+    "mag": 5.5,
+    "place": "9 km E of Union, Philippines",
+    "time": 1794750095701,
+    "alert": "green",
+    "depth": 9.971,
+    "mmi": 6.399,
+    "cdi": 4.6,
+    "felt": 12,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.5,
+    "place": "Fiji region",
+    "time": 1794719702697,
+    "alert": "green",
+    "depth": 469.881,
+    "mmi": 1.728,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.1,
+    "place": "169 km NW of Gorontalo, Indonesia",
+    "time": 1794757274978,
+    "alert": null,
+    "depth": 487.384,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ],
+  "near_japan": []
+ },
+ "flares": {
+  "count": 6,
+  "max_class": "C2.8"
+ },
+ "kp": {
+  "kp_max": 2.0
+ },
+ "wind": {
+  "wind_max": 447
+ },
+ "co2": {
+  "ppm": 428.69,
+  "date": "2026-11-14",
+  "year_change": 2.34
+ },
+ "seaice": {
+  "north": {
+   "extent": 8.91,
+   "date": "2026-11-14",
+   "change_5d": 0.25,
+   "vs_normal": -1.67
+  },
+  "south": {
+   "extent": 14.94,
+   "date": "2026-11-14",
+   "change_5d": -0.33,
+   "vs_normal": -1.33
+  }
+ },
+ "hazards": {
+  "count": 89,
+  "events": [
+   {
+    "type": "TC",
+    "kind_ja": "台風・サイクロン",
+    "name": "FOUR-26",
+    "country": "Cook Islands",
+    "alert": "green",
+    "severity": "Tropical Storm (maximum wind speed of 148 km/h)"
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Italy",
+    "country": "Italy",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in India",
+    "country": "India",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 6934 ha"
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in Australia",
+    "country": "Australia",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 5773 ha"
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in Australia",
+    "country": "Australia",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 46970 ha"
+   }
+  ],
+  "grave": []
+ },
+ "moon": {
+  "age": 5.8,
+  "ja": "三日月",
+  "en": "waxing crescent"
+ }
+}
