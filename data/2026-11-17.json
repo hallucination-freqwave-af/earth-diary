@@ -1,0 +1,159 @@
+{
+ "mood": "達観",
+ "utc": "2026-11-16 20:18",
+ "errors": [],
+ "quakes": {
+  "grave": [],
+  "count": 197,
+  "m5_count": 4,
+  "max_mag": 5.4,
+  "top": [
+   {
+    "mag": 5.4,
+    "place": "95 km WSW of Changuillo, Peru",
+    "time": 1794845805265,
+    "alert": "green",
+    "depth": 10,
+    "mmi": 4.138,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.4,
+    "place": "20 km NW of Anamizu, Japan",
+    "time": 1794803051718,
+    "alert": "green",
+    "depth": 273.644,
+    "mmi": 2.929,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5,
+    "place": "68 km S of Sarangani, Philippines",
+    "time": 1794813254483,
+    "alert": null,
+    "depth": 10,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ],
+  "near_japan": [
+   {
+    "mag": 5.4,
+    "place": "20 km NW of Anamizu, Japan",
+    "time": 1794803051718,
+    "alert": "green",
+    "depth": 273.644,
+    "mmi": 2.929,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 4.6,
+    "place": "113 km ESE of Wadomari, Japan",
+    "time": 1794835945974,
+    "alert": null,
+    "depth": 10,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ]
+ },
+ "flares": {
+  "count": 12,
+  "max_class": "C5.4"
+ },
+ "kp": {
+  "kp_max": 1.33
+ },
+ "wind": {
+  "wind_max": 363
+ },
+ "co2": {
+  "ppm": 428.19,
+  "date": "2026-11-15",
+  "year_change": 1.81
+ },
+ "seaice": {
+  "north": {
+   "extent": 9.0,
+   "date": "2026-11-15",
+   "change_5d": 0.29,
+   "vs_normal": -1.66
+  },
+  "south": {
+   "extent": 14.78,
+   "date": "2026-11-15",
+   "change_5d": -0.47,
+   "vs_normal": -1.4
+  }
+ },
+ "hazards": {
+  "count": 96,
+  "events": [
+   {
+    "type": "TC",
+    "kind_ja": "台風・サイクロン",
+    "name": "AKVAN-26",
+    "country": "India",
+    "alert": "orange",
+    "severity": "Tropical Storm (maximum wind speed of 93 km/h)"
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Indonesia",
+    "country": "Indonesia",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "TC",
+    "kind_ja": "台風・サイクロン",
+    "name": "XAVIER-26",
+    "country": "Cook Islands",
+    "alert": "green",
+    "severity": "Tropical Storm (maximum wind speed of 176 km/h)"
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Argentina",
+    "country": "Argentina",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in France",
+    "country": "France",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   }
+  ],
+  "grave": [
+   {
+    "type": "TC",
+    "kind_ja": "台風・サイクロン",
+    "name": "AKVAN-26",
+    "country": "India",
+    "alert": "orange",
+    "severity": "Tropical Storm (maximum wind speed of 93 km/h)"
+   }
+  ]
+ },
+ "moon": {
+  "age": 6.9,
+  "ja": "上弦",
+  "en": "first quarter"
+ }
+}
