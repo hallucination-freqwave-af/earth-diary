@@ -1,0 +1,160 @@
+{
+ "mood": "正直",
+ "utc": "2026-11-17 19:05",
+ "errors": [],
+ "quakes": {
+  "grave": [
+   {
+    "mag": 6.6,
+    "place": "148 km WSW of Tual, Indonesia",
+    "time": 1794863480515,
+    "alert": "green",
+    "depth": 68,
+    "mmi": 5.355,
+    "cdi": 3.4,
+    "felt": 10,
+    "tsunami": 0
+   }
+  ],
+  "count": 216,
+  "m5_count": 3,
+  "max_mag": 6.6,
+  "top": [
+   {
+    "mag": 6.6,
+    "place": "148 km WSW of Tual, Indonesia",
+    "time": 1794863480515,
+    "alert": "green",
+    "depth": 68,
+    "mmi": 5.355,
+    "cdi": 3.4,
+    "felt": 10,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.2,
+    "place": "south of the Kermadec Islands",
+    "time": 1794925236814,
+    "alert": null,
+    "depth": 337.077,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5,
+    "place": "137 km SSE of Kirakira, Solomon Islands",
+    "time": 1794880817654,
+    "alert": null,
+    "depth": 10,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ],
+  "near_japan": [
+   {
+    "mag": 4.9,
+    "place": "173 km ENE of Noda, Japan",
+    "time": 1794911578639,
+    "alert": null,
+    "depth": 26.644,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ]
+ },
+ "flares": {
+  "count": 14,
+  "max_class": "M1.1"
+ },
+ "kp": {
+  "kp_max": 1.67
+ },
+ "wind": {
+  "wind_max": 451
+ },
+ "co2": {
+  "ppm": 429.89,
+  "date": "2026-11-16",
+  "year_change": 1.89
+ },
+ "seaice": {
+  "north": {
+   "extent": 9.02,
+   "date": "2026-11-16",
+   "change_5d": 0.18,
+   "vs_normal": -1.71
+  },
+  "south": {
+   "extent": 14.64,
+   "date": "2026-11-16",
+   "change_5d": -0.45,
+   "vs_normal": -1.42
+  }
+ },
+ "hazards": {
+  "count": 67,
+  "events": [
+   {
+    "type": "TC",
+    "kind_ja": "台風・サイクロン",
+    "name": "AKVAN-26",
+    "country": "India",
+    "alert": "orange",
+    "severity": "Tropical Storm (maximum wind speed of 83 km/h)"
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Indonesia",
+    "country": "Indonesia",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "TC",
+    "kind_ja": "台風・サイクロン",
+    "name": "XAVIER-26",
+    "country": "Cook Islands",
+    "alert": "green",
+    "severity": "Hurricane/Typhoon > 74 mph (maximum wind speed of 231 km/h)"
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Spain",
+    "country": "Spain",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in South Africa",
+    "country": "South Africa",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   }
+  ],
+  "grave": [
+   {
+    "type": "TC",
+    "kind_ja": "台風・サイクロン",
+    "name": "AKVAN-26",
+    "country": "India",
+    "alert": "orange",
+    "severity": "Tropical Storm (maximum wind speed of 83 km/h)"
+   }
+  ]
+ },
+ "moon": {
+  "age": 7.9,
+  "ja": "上弦",
+  "en": "first quarter"
+ }
+}
