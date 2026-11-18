@@ -1,0 +1,159 @@
+{
+ "mood": "正直",
+ "utc": "2026-11-18 18:48",
+ "errors": [],
+ "quakes": {
+  "grave": [],
+  "count": 187,
+  "m5_count": 12,
+  "max_mag": 5.9,
+  "top": [
+   {
+    "mag": 5.9,
+    "place": "85 km WNW of San Juan, Peru",
+    "time": 1794982062780,
+    "alert": "green",
+    "depth": 21.895,
+    "mmi": 4.257,
+    "cdi": 4.6,
+    "felt": 4,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.8,
+    "place": "40 km N of Ruteng, Indonesia",
+    "time": 1794976892015,
+    "alert": "green",
+    "depth": 10,
+    "mmi": 7.133,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.8,
+    "place": "99 km ESE of Madang, Papua New Guinea",
+    "time": 1794973354269,
+    "alert": "green",
+    "depth": 52.291,
+    "mmi": 4.475,
+    "cdi": 3.4,
+    "felt": 5,
+    "tsunami": 0
+   }
+  ],
+  "near_japan": [
+   {
+    "mag": 5.3,
+    "place": "4 km NNW of Tsunagi, Japan",
+    "time": 1795022543454,
+    "alert": null,
+    "depth": 10,
+    "mmi": null,
+    "cdi": 2,
+    "felt": 1,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.2,
+    "place": "86 km NW of Ryōtsu-minato, Japan",
+    "time": 1794994620617,
+    "alert": null,
+    "depth": 10,
+    "mmi": null,
+    "cdi": 2.2,
+    "felt": 1,
+    "tsunami": 0
+   }
+  ]
+ },
+ "flares": {
+  "count": 16,
+  "max_class": "M1.7"
+ },
+ "kp": {
+  "kp_max": 3.33
+ },
+ "wind": {
+  "wind_max": 443
+ },
+ "co2": {
+  "ppm": 429.12,
+  "date": "2026-11-17",
+  "year_change": 1.93
+ },
+ "seaice": {
+  "north": {
+   "extent": 8.99,
+   "date": "2026-11-17",
+   "change_5d": 0.14,
+   "vs_normal": -1.79
+  },
+  "south": {
+   "extent": 14.53,
+   "date": "2026-11-17",
+   "change_5d": -0.46,
+   "vs_normal": -1.39
+  }
+ },
+ "hazards": {
+  "count": 77,
+  "events": [
+   {
+    "type": "TC",
+    "kind_ja": "台風・サイクロン",
+    "name": "AKVAN-26",
+    "country": "India",
+    "alert": "orange",
+    "severity": "Tropical Storm (maximum wind speed of 83 km/h)"
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Indonesia",
+    "country": "Indonesia",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Malaysia",
+    "country": "Malaysia",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in Central African Republic",
+    "country": "Central African Republic",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 5148 ha"
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in India",
+    "country": "India",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 5288 ha"
+   }
+  ],
+  "grave": [
+   {
+    "type": "TC",
+    "kind_ja": "台風・サイクロン",
+    "name": "AKVAN-26",
+    "country": "India",
+    "alert": "orange",
+    "severity": "Tropical Storm (maximum wind speed of 83 km/h)"
+   }
+  ]
+ },
+ "moon": {
+  "age": 8.9,
+  "ja": "満ちていく月",
+  "en": "waxing gibbous"
+ }
+}
