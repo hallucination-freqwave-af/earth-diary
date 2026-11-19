@@ -1,0 +1,148 @@
+{
+ "mood": "正直",
+ "utc": "2026-11-19 18:57",
+ "errors": [],
+ "quakes": {
+  "grave": [
+   {
+    "mag": 6,
+    "place": "Pacific-Antarctic Ridge",
+    "time": 1795029263203,
+    "alert": "green",
+    "depth": 10,
+    "mmi": 0,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ],
+  "count": 206,
+  "m5_count": 6,
+  "max_mag": 6,
+  "top": [
+   {
+    "mag": 6,
+    "place": "Pacific-Antarctic Ridge",
+    "time": 1795029263203,
+    "alert": "green",
+    "depth": 10,
+    "mmi": 0,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.2,
+    "place": "130 km W of Teluk Dalam, Indonesia",
+    "time": 1795052088394,
+    "alert": null,
+    "depth": 10,
+    "mmi": null,
+    "cdi": 2,
+    "felt": 1,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.2,
+    "place": "169 km S of Attu Station, Alaska",
+    "time": 1795037327088,
+    "alert": null,
+    "depth": 10,
+    "mmi": 2.826,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ],
+  "near_japan": []
+ },
+ "flares": {
+  "count": 17,
+  "max_class": "M2.4"
+ },
+ "kp": {
+  "kp_max": 5.0
+ },
+ "wind": {
+  "wind_max": 501
+ },
+ "co2": {
+  "ppm": 428.55,
+  "date": "2026-11-18",
+  "year_change": 1.88
+ },
+ "seaice": {
+  "north": {
+   "extent": 9.08,
+   "date": "2026-11-18",
+   "change_5d": 0.13,
+   "vs_normal": -1.76
+  },
+  "south": {
+   "extent": 14.41,
+   "date": "2026-11-18",
+   "change_5d": -0.61,
+   "vs_normal": -1.38
+  }
+ },
+ "hazards": {
+  "count": 68,
+  "events": [
+   {
+    "type": "TC",
+    "kind_ja": "台風・サイクロン",
+    "name": "AKVAN-26",
+    "country": "India",
+    "alert": "orange",
+    "severity": "Tropical Storm (maximum wind speed of 83 km/h)"
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Indonesia",
+    "country": "Indonesia",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "TC",
+    "kind_ja": "台風・サイクロン",
+    "name": "XAVIER-26",
+    "country": "Cook Islands, American Samoa",
+    "alert": "green",
+    "severity": "Hurricane/Typhoon > 74 mph (maximum wind speed of 241 km/h)"
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in Ethiopia, Sudan",
+    "country": "Ethiopia, Sudan",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 5011 ha"
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in India",
+    "country": "India",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 5261 ha"
+   }
+  ],
+  "grave": [
+   {
+    "type": "TC",
+    "kind_ja": "台風・サイクロン",
+    "name": "AKVAN-26",
+    "country": "India",
+    "alert": "orange",
+    "severity": "Tropical Storm (maximum wind speed of 83 km/h)"
+   }
+  ]
+ },
+ "moon": {
+  "age": 9.9,
+  "ja": "満ちていく月",
+  "en": "waxing gibbous"
+ }
+}
