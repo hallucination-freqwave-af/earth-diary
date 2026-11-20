@@ -1,0 +1,162 @@
+{
+ "mood": "達観",
+ "utc": "2026-11-20 18:31",
+ "errors": [],
+ "quakes": {
+  "grave": [
+   {
+    "mag": 5.0,
+    "place": "10 km NW of Pinnacles, CA",
+    "time": 1795157356530,
+    "alert": "green",
+    "depth": 6.69999980926514,
+    "mmi": 6.371,
+    "cdi": 6.2,
+    "felt": 3627,
+    "tsunami": 1
+   },
+   {
+    "mag": 4.2,
+    "place": "1 km NW of Commerce, CA",
+    "time": 1795173935140,
+    "alert": "green",
+    "depth": 15.45,
+    "mmi": 4.383,
+    "cdi": 4,
+    "felt": 14059,
+    "tsunami": 1
+   }
+  ],
+  "count": 280,
+  "m5_count": 7,
+  "max_mag": 5.6,
+  "top": [
+   {
+    "mag": 5.6,
+    "place": "southeast of the Loyalty Islands",
+    "time": 1795135754102,
+    "alert": "green",
+    "depth": 10,
+    "mmi": 0,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.4,
+    "place": "Carlsberg Ridge",
+    "time": 1795164251644,
+    "alert": "green",
+    "depth": 10,
+    "mmi": 0,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.3,
+    "place": "South Georgia Island region",
+    "time": 1795118869383,
+    "alert": null,
+    "depth": 10,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ],
+  "near_japan": [
+   {
+    "mag": 4.2,
+    "place": "293 km S of Ōyama, Japan",
+    "time": 1795137607698,
+    "alert": null,
+    "depth": 312.575,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ]
+ },
+ "flares": {
+  "count": 9,
+  "max_class": "C9.6"
+ },
+ "kp": {
+  "kp_max": 2.0
+ },
+ "wind": {
+  "wind_max": 621
+ },
+ "co2": {
+  "ppm": 428.55,
+  "date": "2026-11-18",
+  "year_change": 1.88
+ },
+ "seaice": {
+  "north": {
+   "extent": 9.05,
+   "date": "2026-11-19",
+   "change_5d": 0.14,
+   "vs_normal": -1.85
+  },
+  "south": {
+   "extent": 14.3,
+   "date": "2026-11-19",
+   "change_5d": -0.64,
+   "vs_normal": -1.36
+  }
+ },
+ "hazards": {
+  "count": 63,
+  "events": [
+   {
+    "type": "TC",
+    "kind_ja": "台風・サイクロン",
+    "name": "XAVIER-26",
+    "country": "Cook Islands, American Samoa, Samoa",
+    "alert": "green",
+    "severity": "Hurricane/Typhoon > 74 mph (maximum wind speed of 241 km/h)"
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Indonesia",
+    "country": "Indonesia",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Brazil",
+    "country": "Brazil",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in South Sudan",
+    "country": "South Sudan",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 5703 ha"
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in Madagascar",
+    "country": "Madagascar",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 5439 ha"
+   }
+  ],
+  "grave": []
+ },
+ "moon": {
+  "age": 10.9,
+  "ja": "満ちていく月",
+  "en": "waxing gibbous"
+ }
+}
