@@ -1,0 +1,173 @@
+{
+ "mood": "正直",
+ "utc": "2026-11-21 17:21",
+ "errors": [],
+ "quakes": {
+  "grave": [
+   {
+    "mag": 6.7,
+    "place": "9 km NE of Carhuamayo, Peru",
+    "time": 1795219759667,
+    "alert": "green",
+    "depth": 107.991,
+    "mmi": 5.707,
+    "cdi": 5.2,
+    "felt": 109,
+    "tsunami": 1
+   },
+   {
+    "mag": 5.9,
+    "place": "238 km SW of Yanglong, China",
+    "time": 1795257933230,
+    "alert": "yellow",
+    "depth": 10,
+    "mmi": 7.497,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 3.4,
+    "place": "0 km W of Lea Hill, Washington",
+    "time": 1795245192330,
+    "alert": null,
+    "depth": 55.45,
+    "mmi": 2.94,
+    "cdi": 3.1,
+    "felt": 1828,
+    "tsunami": 0
+   }
+  ],
+  "count": 241,
+  "m5_count": 6,
+  "max_mag": 6.8,
+  "top": [
+   {
+    "mag": 6.8,
+    "place": "105 km NE of Lospalos, Timor Leste",
+    "time": 1795254129120,
+    "alert": "green",
+    "depth": 132.055,
+    "mmi": 5.298,
+    "cdi": 3.6,
+    "felt": 38,
+    "tsunami": 0
+   },
+   {
+    "mag": 6.7,
+    "place": "9 km NE of Carhuamayo, Peru",
+    "time": 1795219759667,
+    "alert": "green",
+    "depth": 107.991,
+    "mmi": 5.707,
+    "cdi": 5.2,
+    "felt": 109,
+    "tsunami": 1
+   },
+   {
+    "mag": 5.9,
+    "place": "238 km SW of Yanglong, China",
+    "time": 1795257933230,
+    "alert": "yellow",
+    "depth": 10,
+    "mmi": 7.497,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ],
+  "near_japan": [
+   {
+    "mag": 5.2,
+    "place": "112 km SSE of Tateyama, Japan",
+    "time": 1795255745474,
+    "alert": null,
+    "depth": 10,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ]
+ },
+ "flares": {
+  "count": 5,
+  "max_class": "B7.2"
+ },
+ "kp": {
+  "kp_max": 2.67
+ },
+ "wind": {
+  "wind_max": 433
+ },
+ "co2": {
+  "ppm": 429.16,
+  "date": "2026-11-19",
+  "year_change": 1.81
+ },
+ "seaice": {
+  "north": {
+   "extent": 9.07,
+   "date": "2026-11-20",
+   "change_5d": 0.07,
+   "vs_normal": -1.88
+  },
+  "south": {
+   "extent": 14.22,
+   "date": "2026-11-20",
+   "change_5d": -0.56,
+   "vs_normal": -1.29
+  }
+ },
+ "hazards": {
+  "count": 78,
+  "events": [
+   {
+    "type": "TC",
+    "kind_ja": "台風・サイクロン",
+    "name": "XAVIER-26",
+    "country": "Cook Islands",
+    "alert": "green",
+    "severity": "Tropical Storm (maximum wind speed of 241 km/h)"
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Italy",
+    "country": "Italy",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Indonesia",
+    "country": "Indonesia",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in France",
+    "country": "France",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in United States",
+    "country": "United States",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   }
+  ],
+  "grave": []
+ },
+ "moon": {
+  "age": 11.8,
+  "ja": "満ちていく月",
+  "en": "waxing gibbous"
+ }
+}
