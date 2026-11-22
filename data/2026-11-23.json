@@ -1,0 +1,127 @@
+{
+ "mood": "達観",
+ "utc": "2026-11-22 17:45",
+ "errors": [],
+ "quakes": {
+  "grave": [],
+  "count": 201,
+  "m5_count": 3,
+  "max_mag": 5.4,
+  "top": [
+   {
+    "mag": 5.4,
+    "place": "224 km NE of Bitung, Indonesia",
+    "time": 1795334080056,
+    "alert": "green",
+    "depth": 43.705,
+    "mmi": 3.542,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.1,
+    "place": "45 km SE of Ürümqi, China",
+    "time": 1795338508009,
+    "alert": null,
+    "depth": 10,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5,
+    "place": "15 km NNE of Carhuamayo, Peru",
+    "time": 1795326718624,
+    "alert": null,
+    "depth": 108.134,
+    "mmi": null,
+    "cdi": 4.1,
+    "felt": 11,
+    "tsunami": 0
+   }
+  ],
+  "near_japan": []
+ },
+ "flares": {
+  "count": 1,
+  "max_class": "B4.7"
+ },
+ "kp": {
+  "kp_max": 2.33
+ },
+ "wind": {
+  "wind_max": 479
+ },
+ "co2": {
+  "ppm": 429.16,
+  "date": "2026-11-19",
+  "year_change": 1.81
+ },
+ "seaice": {
+  "north": {
+   "extent": 9.09,
+   "date": "2026-11-21",
+   "change_5d": 0.07,
+   "vs_normal": -1.93
+  },
+  "south": {
+   "extent": 14.21,
+   "date": "2026-11-21",
+   "change_5d": -0.44,
+   "vs_normal": -1.16
+  }
+ },
+ "hazards": {
+  "count": 68,
+  "events": [
+   {
+    "type": "TC",
+    "kind_ja": "台風・サイクロン",
+    "name": "XAVIER-26",
+    "country": "Cook Islands, American Samoa",
+    "alert": "green",
+    "severity": "Tropical Storm (maximum wind speed of 241 km/h)"
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Chile",
+    "country": "Chile",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in Australia",
+    "country": "Australia",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 6194 ha"
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in Australia",
+    "country": "Australia",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 5173 ha"
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in Australia",
+    "country": "Australia",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 5164 ha"
+   }
+  ],
+  "grave": []
+ },
+ "moon": {
+  "age": 12.8,
+  "ja": "満ちていく月",
+  "en": "waxing gibbous"
+ }
+}
