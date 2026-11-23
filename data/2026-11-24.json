@@ -1,0 +1,150 @@
+{
+ "mood": "正直",
+ "utc": "2026-11-23 21:59",
+ "errors": [],
+ "quakes": {
+  "grave": [
+   {
+    "mag": 6.5,
+    "place": "Vanuatu region",
+    "time": 1795401658052,
+    "alert": "green",
+    "depth": 598,
+    "mmi": 0,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 1
+   },
+   {
+    "mag": 3.2,
+    "place": "6 km W of Hermosa Beach, CA",
+    "time": 1795411061120,
+    "alert": null,
+    "depth": 13.12,
+    "mmi": 3.214,
+    "cdi": 3.4,
+    "felt": 2573,
+    "tsunami": 0
+   }
+  ],
+  "count": 239,
+  "m5_count": 4,
+  "max_mag": 6.5,
+  "top": [
+   {
+    "mag": 6.5,
+    "place": "Vanuatu region",
+    "time": 1795401658052,
+    "alert": "green",
+    "depth": 598,
+    "mmi": 0,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 1
+   },
+   {
+    "mag": 5.5,
+    "place": "west of Macquarie Island",
+    "time": 1795420886457,
+    "alert": "green",
+    "depth": 10,
+    "mmi": 0,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.4,
+    "place": "181 km NE of Lospalos, Timor Leste",
+    "time": 1795419381052,
+    "alert": "green",
+    "depth": 119.267,
+    "mmi": 3.719,
+    "cdi": 2,
+    "felt": 1,
+    "tsunami": 0
+   }
+  ],
+  "near_japan": []
+ },
+ "flares": {
+  "count": 4,
+  "max_class": "B4.7"
+ },
+ "kp": {
+  "kp_max": 1.67
+ },
+ "wind": {
+  "wind_max": 464
+ },
+ "co2": {
+  "ppm": 429.16,
+  "date": "2026-11-19",
+  "year_change": 1.81
+ },
+ "seaice": {
+  "north": {
+   "extent": 9.18,
+   "date": "2026-11-22",
+   "change_5d": 0.19,
+   "vs_normal": -1.91
+  },
+  "south": {
+   "extent": 14.12,
+   "date": "2026-11-22",
+   "change_5d": -0.41,
+   "vs_normal": -1.09
+  }
+ },
+ "hazards": {
+  "count": 80,
+  "events": [
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Indonesia",
+    "country": "Indonesia",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Thailand",
+    "country": "Thailand",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Ireland",
+    "country": "Ireland",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in Benin, Burkina Faso",
+    "country": "Benin, Burkina Faso",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 5645 ha"
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in South Sudan",
+    "country": "South Sudan",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 7172 ha"
+   }
+  ],
+  "grave": []
+ },
+ "moon": {
+  "age": 14.0,
+  "ja": "満月",
+  "en": "full moon"
+ }
+}
