@@ -1,0 +1,151 @@
+{
+ "mood": "うるさい",
+ "utc": "2026-11-24 20:36",
+ "errors": [],
+ "quakes": {
+  "grave": [
+   {
+    "mag": 6.4,
+    "place": "Mauritius - Reunion region",
+    "time": 1795518374036,
+    "alert": "green",
+    "depth": 10,
+    "mmi": 0,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ],
+  "count": 236,
+  "m5_count": 4,
+  "max_mag": 6.4,
+  "top": [
+   {
+    "mag": 6.4,
+    "place": "Mauritius - Reunion region",
+    "time": 1795518374036,
+    "alert": "green",
+    "depth": 10,
+    "mmi": 0,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.3,
+    "place": "67 km WNW of Mangan, India",
+    "time": 1795483962417,
+    "alert": null,
+    "depth": 10,
+    "mmi": null,
+    "cdi": 4.3,
+    "felt": 53,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.2,
+    "place": "93 km WSW of Puerto Madero, Mexico",
+    "time": 1795521104702,
+    "alert": null,
+    "depth": 35,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ],
+  "near_japan": [
+   {
+    "mag": 4.4,
+    "place": "15 km SW of Kobayashi, Japan",
+    "time": 1795538461365,
+    "alert": null,
+    "depth": 136.304,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ]
+ },
+ "flares": {
+  "count": 2,
+  "max_class": "B3.6"
+ },
+ "kp": {
+  "kp_max": 1.67
+ },
+ "wind": {
+  "wind_max": 1032
+ },
+ "co2": {
+  "ppm": 429.13,
+  "date": "2026-11-23",
+  "year_change": 2.41
+ },
+ "seaice": {
+  "north": {
+   "extent": 9.23,
+   "date": "2026-11-23",
+   "change_5d": 0.14,
+   "vs_normal": -1.93
+  },
+  "south": {
+   "extent": 13.95,
+   "date": "2026-11-23",
+   "change_5d": -0.46,
+   "vs_normal": -1.12
+  }
+ },
+ "hazards": {
+  "count": 72,
+  "events": [
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Indonesia",
+    "country": "Indonesia",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "TC",
+    "kind_ja": "台風・サイクロン",
+    "name": "03-20262027-27",
+    "country": "",
+    "alert": "green",
+    "severity": "Tropical Depression (maximum wind speed of 63 km/h)"
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Portugal",
+    "country": "Portugal",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Ireland",
+    "country": "Ireland",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Thailand",
+    "country": "Thailand",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   }
+  ],
+  "grave": []
+ },
+ "moon": {
+  "age": 14.9,
+  "ja": "満月",
+  "en": "full moon"
+ }
+}
