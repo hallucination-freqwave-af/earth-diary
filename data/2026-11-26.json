@@ -1,0 +1,150 @@
+{
+ "mood": "達観",
+ "utc": "2026-11-25 19:52",
+ "errors": [],
+ "quakes": {
+  "grave": [],
+  "count": 216,
+  "m5_count": 5,
+  "max_mag": 5.9,
+  "top": [
+   {
+    "mag": 5.9,
+    "place": "Balleny Islands region",
+    "time": 1795570725672,
+    "alert": "green",
+    "depth": 10,
+    "mmi": 0,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.3,
+    "place": "83 km ESE of Hengchun, Taiwan",
+    "time": 1795596436394,
+    "alert": null,
+    "depth": 10,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.2,
+    "place": "175 km N of Hicks Bay, New Zealand",
+    "time": 1795588448672,
+    "alert": null,
+    "depth": 25.327,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ],
+  "near_japan": [
+   {
+    "mag": 4.3,
+    "place": "18 km SSW of Yonakuni, Japan",
+    "time": 1795601925642,
+    "alert": null,
+    "depth": 46.912,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 4.2,
+    "place": "Izu Islands, Japan region",
+    "time": 1795600470779,
+    "alert": null,
+    "depth": 432.459,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ]
+ },
+ "flares": {
+  "count": 5,
+  "max_class": "B6.4"
+ },
+ "kp": {
+  "kp_max": 3.0
+ },
+ "wind": {
+  "wind_max": 408
+ },
+ "co2": {
+  "ppm": 429.98,
+  "date": "2026-11-24",
+  "year_change": 2.69
+ },
+ "seaice": {
+  "north": {
+   "extent": 9.29,
+   "date": "2026-11-24",
+   "change_5d": 0.24,
+   "vs_normal": -1.95
+  },
+  "south": {
+   "extent": 13.79,
+   "date": "2026-11-24",
+   "change_5d": -0.51,
+   "vs_normal": -1.1
+  }
+ },
+ "hazards": {
+  "count": 67,
+  "events": [
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Indonesia",
+    "country": "Indonesia",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in Australia",
+    "country": "Australia",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 7646 ha"
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in Sudan, South Sudan",
+    "country": "Sudan, South Sudan",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 5584 ha"
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in Australia",
+    "country": "Australia",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 8322 ha"
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in Brazil",
+    "country": "Brazil",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 7905 ha"
+   }
+  ],
+  "grave": []
+ },
+ "moon": {
+  "age": 15.9,
+  "ja": "欠けていく月",
+  "en": "waning gibbous"
+ }
+}
