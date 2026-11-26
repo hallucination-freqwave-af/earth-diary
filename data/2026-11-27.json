@@ -1,0 +1,127 @@
+{
+ "mood": "達観",
+ "utc": "2026-11-26 19:30",
+ "errors": [],
+ "quakes": {
+  "grave": [],
+  "count": 235,
+  "m5_count": 5,
+  "max_mag": 5.7,
+  "top": [
+   {
+    "mag": 5.7,
+    "place": "Revilla Gigedo Islands region",
+    "time": 1795706804294,
+    "alert": "green",
+    "depth": 10,
+    "mmi": 0,
+    "cdi": 1,
+    "felt": 1,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.5,
+    "place": "204 km S of Taliwang, Indonesia",
+    "time": 1795684120640,
+    "alert": "green",
+    "depth": 15.139,
+    "mmi": 0,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.2,
+    "place": "265 km WNW of Houma, Tonga",
+    "time": 1795684965352,
+    "alert": null,
+    "depth": 493.861,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ],
+  "near_japan": []
+ },
+ "flares": {
+  "count": 8,
+  "max_class": "B6.4"
+ },
+ "kp": {
+  "kp_max": 2.0
+ },
+ "wind": {
+  "wind_max": 408
+ },
+ "co2": {
+  "ppm": 429.98,
+  "date": "2026-11-24",
+  "year_change": 2.69
+ },
+ "seaice": {
+  "north": {
+   "extent": 9.47,
+   "date": "2026-11-25",
+   "change_5d": 0.4,
+   "vs_normal": -1.85
+  },
+  "south": {
+   "extent": 13.58,
+   "date": "2026-11-25",
+   "change_5d": -0.64,
+   "vs_normal": -1.16
+  }
+ },
+ "hazards": {
+  "count": 68,
+  "events": [
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Italy",
+    "country": "Italy",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in France",
+    "country": "France",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in Australia",
+    "country": "Australia",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 8396 ha"
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in Brazil",
+    "country": "Brazil",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 8361 ha"
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in Madagascar",
+    "country": "Madagascar",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 18948 ha"
+   }
+  ],
+  "grave": []
+ },
+ "moon": {
+  "age": 16.9,
+  "ja": "欠けていく月",
+  "en": "waning gibbous"
+ }
+}
