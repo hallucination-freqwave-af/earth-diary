@@ -1,0 +1,139 @@
+{
+ "mood": "達観",
+ "utc": "2026-11-27 19:25",
+ "errors": [],
+ "quakes": {
+  "grave": [],
+  "count": 219,
+  "m5_count": 4,
+  "max_mag": 5.1,
+  "top": [
+   {
+    "mag": 5.1,
+    "place": "107 km SSE of Auki, Solomon Islands",
+    "time": 1795738020857,
+    "alert": null,
+    "depth": 74.064,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5.1,
+    "place": "Bonin Islands, Japan region",
+    "time": 1795721588628,
+    "alert": null,
+    "depth": 84.59,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   },
+   {
+    "mag": 5,
+    "place": "Off the coast of Aisen, Chile",
+    "time": 1795754676196,
+    "alert": null,
+    "depth": 10,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ],
+  "near_japan": [
+   {
+    "mag": 5.1,
+    "place": "Bonin Islands, Japan region",
+    "time": 1795721588628,
+    "alert": null,
+    "depth": 84.59,
+    "mmi": null,
+    "cdi": null,
+    "felt": null,
+    "tsunami": 0
+   }
+  ]
+ },
+ "flares": {
+  "count": 11,
+  "max_class": "C3.9"
+ },
+ "kp": {
+  "kp_max": 2.33
+ },
+ "wind": {
+  "wind_max": 374
+ },
+ "co2": {
+  "ppm": 430.36,
+  "date": "2026-11-26",
+  "year_change": 3.33
+ },
+ "seaice": {
+  "north": {
+   "extent": 9.46,
+   "date": "2026-11-26",
+   "change_5d": 0.37,
+   "vs_normal": -1.94
+  },
+  "south": {
+   "extent": 13.43,
+   "date": "2026-11-26",
+   "change_5d": -0.78,
+   "vs_normal": -1.14
+  }
+ },
+ "hazards": {
+  "count": 54,
+  "events": [
+   {
+    "type": "FL",
+    "kind_ja": "洪水",
+    "name": "Flood in Italy",
+    "country": "Italy",
+    "alert": "green",
+    "severity": "Magnitude 0 "
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in Australia",
+    "country": "Australia",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 52956 ha"
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in Brazil",
+    "country": "Brazil",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 11214 ha"
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in Brazil",
+    "country": "Brazil",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 7377 ha"
+   },
+   {
+    "type": "WF",
+    "kind_ja": "山火事",
+    "name": "Forest fires in Brazil",
+    "country": "Brazil",
+    "alert": "green",
+    "severity": "Green impact for forestfire in 6438 ha"
+   }
+  ],
+  "grave": []
+ },
+ "moon": {
+  "age": 17.9,
+  "ja": "欠けていく月",
+  "en": "waning gibbous"
+ }
+}
